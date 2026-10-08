@@ -60,3 +60,14 @@ Current local result:
   returned `0`.
 - `genlayer call 0xF7E17581A1A281a697b45894dff8F71dda8B1A8b submission_count_total`
   returned `0`.
+
+## Live StudioNet Test
+
+A real lifecycle test was also run against the deployed contract:
+
+- `create_task`: `0x26cd56cf1ba4e71b11a37df78884a113559cf9746039e565e4a87ff4a9307b8e`
+- `submit_mapping`: `0xafe131a18389cbfb3386444d91b622d0b1dd9a470a833b72d4366bd8494ec639`
+- `review_mapping`: `0xa67ed474f96cfa70c1a3fcca1b881defb0593c775ada676efaccead94499c0c5`
+
+Final state: task `0` is `AWARDED`, submission `0` is `ACCEPTED`, and the
+decision code is `MAPPING_ACCEPTED`.
