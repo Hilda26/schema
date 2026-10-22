@@ -7,7 +7,7 @@ CONTRACT_PATH = "schema_map_bounty.py"
 
 
 def _address_from_env() -> str | None:
-    return os.environ.get("SCHEMAMAPBOUNTY_ADDRESS")
+    return os.environ.get("SCHEMA_EVOLUTION_REGISTRY_ADDRESS")
 
 
 @pytest.fixture(scope="session")
@@ -15,7 +15,7 @@ def deployed_contract():
     address = _address_from_env()
     if not address:
         pytest.skip(
-            "SCHEMAMAPBOUNTY_ADDRESS not set - deploy first with "
+            "SCHEMA_EVOLUTION_REGISTRY_ADDRESS not set - deploy first with "
             "`genlayer deploy --contract contracts/schema_map_bounty.py` "
             "and export the printed address."
         )

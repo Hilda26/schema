@@ -1,44 +1,90 @@
-# SchemaMapBounty Design Notes
+# SchemaEvolutionRegistry design
 
-## Core Flow
+## Distinct mechanism
 
-1. The sponsor creates a mapping task and escrows the full reward.
-2. The sponsor publishes a source profile, target schema, quality rubric, and
-   evidence commitment.
-3. Mappers submit JSON mapping specifications.
-4. Anyone may review a pending or errored submission before the refund deadline.
-5. GenLayer validators decide whether the mapping satisfies the fixed rubric.
-6. Accepted mappings pay the stored mapper and terminally award the task.
-7. Rejected mappings leave the task open for other submissions.
-8. After the refund deadline, review is blocked and anyone may trigger sponsor
-   refund.
+The earlier SchemaMapBounty used a generic first-accepted bounty lifecycle. This
+contract replaces that mechanism rather than relabeling it.
 
-## Equivalence Principle
+| Earlier mechanism | SchemaEvolutionRegistry |
+| --- | --- |
+| Sponsor escrows a reward | No value enters the contract |
+| Multiple mapper submissions compete | Registry owner publishes immutable versions |
+| First accepted submission wins | Analysis creates a compatibility edge |
+| Winner receives escrow | No winner or transfer exists |
+| Expiry refunds sponsor | No expiry or refund exists |
+| Task/submission storage | Registry/version compatibility graph |
+| Terminal `AWARDED` task | Evolving active-version head |
 
-Validators compare only:
+The new reusable output is durable schema-governance state: which version is
+active, how it relates to its predecessor, whether a migration is required, and
+whether that migration plan is adequate.
+
+## Deterministic state machine
+
+The registry begins with an active genesis version. Each proposed version fixes:
+
+- its active predecessor;
+- schema JSON and external content commitment;
+- the registry's immutable compatibility-policy snapshot;
+- its migration plan; and
+- the earliest deterministic activation time.
+
+Analysis can move a version from `DRAFT` or `ERRORED` to:
+
+- `ANALYZED` for compatible changes;
+- `ANALYZED` for breaking changes with an adequate migration plan;
+- `BLOCKED` for ambiguous changes or inadequate breaking migrations; or
+- `ERRORED` for malformed/inconsistent comparative output.
+
+Only `ANALYZED` can become `ACTIVE`. Activation deterministically deprecates the
+recorded predecessor and advances `current_version_id`. Parallel proposals do
+not silently rebase: after another branch activates, they become ineligible and
+can be marked `STALE`.
+
+## Consensus boundary
+
+Validators answer one semantic question about two fixed schemas and one fixed
+migration plan. The exact output contains only:
 
 ```json
-{"accepted": true, "reason_code": "MAPPING_ACCEPTED"}
+{
+  "classification": "BREAKING",
+  "migration_assessment": "ADEQUATE",
+  "reason_code": "TYPE_OR_FORMAT_CHANGED"
+}
 ```
 
-or:
+The contract validates both finite membership and cross-field coherence. For
+example, a `BREAKING` classification cannot use `NOT_REQUIRED`, while
+`AMBIGUOUS` must use `NOT_APPLICABLE` and `AMBIGUOUS_CHANGE`.
 
-```json
-{"accepted": false, "reason_code": "<finite rejection code>"}
-```
+Consensus cannot choose an owner, version id, predecessor, activation time, or
+state transition. Extra fields are invalid. Model failures create a retryable
+`ERRORED` version without changing the registry head.
 
-Allowed rejection codes are `MISSING_REQUIRED_FIELD`, `SEMANTIC_MISMATCH`,
-`UNSUPPORTED_TRANSFORM`, `AMBIGUOUS_MAPPING`, and `MALFORMED_MAPPING`.
+## Time and stale rounds
 
-## Consequence Boundary
+No leader/model timestamp exists. `analyzed_at`, `activate_after`, activation,
+deprecation, and freezing all use GenVM's validator-reproduced transaction time.
+The analysis round snapshots registry state, the current head, and proposal
+status. If any changes before settlement, the stale round is a no-op.
 
-The model cannot set a recipient, amount, task id, or submission id. A successful
-accepted verdict pays `submission.mapper` exactly `task.reward`. Refunds always
-pay `task.sponsor`.
+## Immutability and branches
 
-## Reusability
+Schema contents, commitments, policies, migration plans, and predecessor links
+cannot be edited after proposal. A corrected change is a new version, leaving a
+complete audit trail. Activating one of several proposals makes the others stale
+instead of applying an analysis to a different predecessor.
 
-The contract can be reused for CRM migrations, ETL onboarding, analytics event
-normalization, healthcare code mapping, vendor CSV imports, or any workflow
-where a sponsor can publish a non-secret schema task and wants validators to
-agree on semantic mapping quality.
+## Bounded growth
+
+Inputs are length-bounded, activation delays are bounded, and a registry stores
+at most 64 versions. This keeps list operations finite and makes storage growth
+explicit.
+
+## No economic lifecycle
+
+The contract has no `payable` decorator, reads no message value, and emits no
+transfer. There is no sponsor, mapper, submission reward, accepted winner,
+deadline refund, or financial settlement. Its substantive mechanism is semantic
+version governance and compatibility-graph maintenance.
