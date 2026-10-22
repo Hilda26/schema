@@ -11,7 +11,7 @@ const chains = await import(
   "file:///C:/Users/HP/AppData/Roaming/npm/node_modules/genlayer/node_modules/genlayer-js/dist/chains/index.js"
 );
 
-const DEFAULT_CONTRACT_ADDRESS = "";
+const DEFAULT_CONTRACT_ADDRESS = "0xf77d7B9E85444C1c8b4c08788760bE7951E9f846";
 const OWNER_ACCOUNT = "briefbond-freelancer";
 
 const POLICY = JSON.stringify({

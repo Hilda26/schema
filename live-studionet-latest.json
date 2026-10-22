@@ -1,0 +1,262 @@
+{
+  "generatedAt": "2026-10-22T06:00:39.371Z",
+  "contractAddress": "0xf77d7B9E85444C1c8b4c08788760bE7951E9f846",
+  "registryId": 0,
+  "genesisId": 0,
+  "compatibleId": 1,
+  "breakingId": 2,
+  "passed": true,
+  "records": [
+    {
+      "label": "initial-read-counts",
+      "registryCount": 0,
+      "versionCount": 0,
+      "owner": "0xA6955940de7CBa1b7155245e7C695093261fBBC0"
+    },
+    {
+      "label": "create-registry",
+      "hash": "0xcaafdc2f56d3c46478279dcec1515f8900ac6a2e27e7d0fb77583f54d689f09e",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "comparativeOutputs": {},
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "after-create-registry",
+      "registry": {
+        "compatibility_policy_json": "{\"backward_compatible\":\"Existing payloads valid under the active schema remain valid for new consumers.\",\"forward_compatible\":\"Payloads emitted under the new schema remain consumable by existing consumers.\",\"rules\":[\"Adding a non-required optional property is BACKWARD_COMPATIBLE with OPTIONAL_ADDITION.\",\"Changing a field type or format is BREAKING.\",\"Adding a required field without a complete default/backfill is BREAKING.\",\"A breaking migration is ADEQUATE only when it specifies dual-read or dual-write, backfill, validation, cutover, and rollback.\"]}",
+        "created_at": "2026-10-22T05:58:27.885199+00:00",
+        "current_version_id": 0,
+        "id": 0,
+        "namespace": "com.hilda.customer.1792648706893-0",
+        "owner": "0xA6955940de7CBa1b7155245e7C695093261fBBC0",
+        "state": "ACTIVE",
+        "updated_at": "2026-10-22T05:58:27.885199+00:00",
+        "version_count": 1
+      },
+      "genesis": {
+        "activate_after": "2026-10-22T05:58:27.885199+00:00",
+        "activated_at": "2026-10-22T05:58:27.885199+00:00",
+        "analyzed_at": "2026-10-22T05:58:27.885199+00:00",
+        "classification": "FULLY_COMPATIBLE",
+        "deprecated_at": "",
+        "has_predecessor": false,
+        "id": 0,
+        "migration_assessment": "NOT_REQUIRED",
+        "migration_plan_json": "{}",
+        "ordinal": 1,
+        "policy_snapshot_json": "{\"backward_compatible\":\"Existing payloads valid under the active schema remain valid for new consumers.\",\"forward_compatible\":\"Payloads emitted under the new schema remain consumable by existing consumers.\",\"rules\":[\"Adding a non-required optional property is BACKWARD_COMPATIBLE with OPTIONAL_ADDITION.\",\"Changing a field type or format is BREAKING.\",\"Adding a required field without a complete default/backfill is BREAKING.\",\"A breaking migration is ADEQUATE only when it specifies dual-read or dual-write, backfill, validation, cutover, and rollback.\"]}",
+        "predecessor_id": 0,
+        "proposed_at": "2026-10-22T05:58:27.885199+00:00",
+        "reason_code": "NO_SEMANTIC_CHANGE",
+        "registry_id": 0,
+        "schema_commitment": "sha256:genesis-1792648706893-0",
+        "schema_json": "{\"title\":\"CustomerProfile\",\"type\":\"object\",\"required\":[\"email\",\"created_at\"],\"properties\":{\"email\":{\"type\":\"string\",\"format\":\"email\",\"meaning\":\"customer contact email\"},\"created_at\":{\"type\":\"string\",\"format\":\"date-time\",\"meaning\":\"account creation instant\"}}}",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "label": "propose-compatible-version",
+      "hash": "0xb0899ddc47d2b23fb43f1a9ffd1e6bdd58829e683bcc7e95619be8b3122614d5",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "comparativeOutputs": {},
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "analyze-compatible-version",
+      "hash": "0x174b92d517eca10ef738c1a6afe56d3833cc3ee28f9db7235ec422d333b0409b",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "comparativeOutputs": {
+        "0": {
+          "status": "return",
+          "payload": {
+            "readable": "\"{\\\"classification\\\": \\\"BACKWARD_COMPATIBLE\\\", \\\"migration_assessment\\\": \\\"NOT_REQUIRED\\\", \\\"reason_code\\\": \\\"OPTIONAL_ADDITION\\\"}\""
+          }
+        }
+      },
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "after-compatible-analysis",
+      "version": {
+        "activate_after": "2026-10-22T05:59:38.905770+00:00",
+        "activated_at": "",
+        "analyzed_at": "2026-10-22T05:58:48.491539+00:00",
+        "classification": "BACKWARD_COMPATIBLE",
+        "deprecated_at": "",
+        "has_predecessor": true,
+        "id": 1,
+        "migration_assessment": "NOT_REQUIRED",
+        "migration_plan_json": "{\"note\":\"No migration required for an optional property.\"}",
+        "ordinal": 2,
+        "policy_snapshot_json": "{\"backward_compatible\":\"Existing payloads valid under the active schema remain valid for new consumers.\",\"forward_compatible\":\"Payloads emitted under the new schema remain consumable by existing consumers.\",\"rules\":[\"Adding a non-required optional property is BACKWARD_COMPATIBLE with OPTIONAL_ADDITION.\",\"Changing a field type or format is BREAKING.\",\"Adding a required field without a complete default/backfill is BREAKING.\",\"A breaking migration is ADEQUATE only when it specifies dual-read or dual-write, backfill, validation, cutover, and rollback.\"]}",
+        "predecessor_id": 0,
+        "proposed_at": "2026-10-22T05:58:38.905770+00:00",
+        "reason_code": "OPTIONAL_ADDITION",
+        "registry_id": 0,
+        "schema_commitment": "sha256:compatible-1792648706893-0",
+        "schema_json": "{\"title\":\"CustomerProfile\",\"type\":\"object\",\"required\":[\"email\",\"created_at\"],\"properties\":{\"email\":{\"type\":\"string\",\"format\":\"email\",\"meaning\":\"customer contact email\"},\"created_at\":{\"type\":\"string\",\"format\":\"date-time\",\"meaning\":\"account creation instant\"},\"display_name\":{\"type\":\"string\",\"meaning\":\"optional customer-facing name\"}}}",
+        "status": "ANALYZED"
+      }
+    },
+    {
+      "label": "activate-compatible-version",
+      "hash": "0xb4b7c112fa7f98c05dfa691839371b5bf807948f50dc539c8a7681d8f0418086",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "comparativeOutputs": {},
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "propose-breaking-version",
+      "hash": "0x97d91ed6ccc2b356cbcf70dfeebbda7eb3633c2e53f102a78f1aa81054493a7b",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "comparativeOutputs": {},
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "analyze-breaking-version",
+      "hash": "0x4f615d887b51d78381829cc0939387626dee860f60040039b88b2aff55a33b5f",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "comparativeOutputs": {
+        "0": {
+          "status": "return",
+          "payload": {
+            "readable": "\"{\\\"classification\\\": \\\"BREAKING\\\", \\\"migration_assessment\\\": \\\"INADEQUATE\\\", \\\"reason_code\\\": \\\"TYPE_OR_FORMAT_CHANGED\\\"}\""
+          }
+        }
+      },
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "final-registry",
+      "registry": {
+        "compatibility_policy_json": "{\"backward_compatible\":\"Existing payloads valid under the active schema remain valid for new consumers.\",\"forward_compatible\":\"Payloads emitted under the new schema remain consumable by existing consumers.\",\"rules\":[\"Adding a non-required optional property is BACKWARD_COMPATIBLE with OPTIONAL_ADDITION.\",\"Changing a field type or format is BREAKING.\",\"Adding a required field without a complete default/backfill is BREAKING.\",\"A breaking migration is ADEQUATE only when it specifies dual-read or dual-write, backfill, validation, cutover, and rollback.\"]}",
+        "created_at": "2026-10-22T05:58:27.885199+00:00",
+        "current_version_id": 1,
+        "id": 0,
+        "namespace": "com.hilda.customer.1792648706893-0",
+        "owner": "0xA6955940de7CBa1b7155245e7C695093261fBBC0",
+        "state": "ACTIVE",
+        "updated_at": "2026-10-22T05:59:50.306923+00:00",
+        "version_count": 3
+      }
+    },
+    {
+      "label": "final-genesis",
+      "version": {
+        "activate_after": "2026-10-22T05:58:27.885199+00:00",
+        "activated_at": "2026-10-22T05:58:27.885199+00:00",
+        "analyzed_at": "2026-10-22T05:58:27.885199+00:00",
+        "classification": "FULLY_COMPATIBLE",
+        "deprecated_at": "2026-10-22T05:59:41.965436+00:00",
+        "has_predecessor": false,
+        "id": 0,
+        "migration_assessment": "NOT_REQUIRED",
+        "migration_plan_json": "{}",
+        "ordinal": 1,
+        "policy_snapshot_json": "{\"backward_compatible\":\"Existing payloads valid under the active schema remain valid for new consumers.\",\"forward_compatible\":\"Payloads emitted under the new schema remain consumable by existing consumers.\",\"rules\":[\"Adding a non-required optional property is BACKWARD_COMPATIBLE with OPTIONAL_ADDITION.\",\"Changing a field type or format is BREAKING.\",\"Adding a required field without a complete default/backfill is BREAKING.\",\"A breaking migration is ADEQUATE only when it specifies dual-read or dual-write, backfill, validation, cutover, and rollback.\"]}",
+        "predecessor_id": 0,
+        "proposed_at": "2026-10-22T05:58:27.885199+00:00",
+        "reason_code": "NO_SEMANTIC_CHANGE",
+        "registry_id": 0,
+        "schema_commitment": "sha256:genesis-1792648706893-0",
+        "schema_json": "{\"title\":\"CustomerProfile\",\"type\":\"object\",\"required\":[\"email\",\"created_at\"],\"properties\":{\"email\":{\"type\":\"string\",\"format\":\"email\",\"meaning\":\"customer contact email\"},\"created_at\":{\"type\":\"string\",\"format\":\"date-time\",\"meaning\":\"account creation instant\"}}}",
+        "status": "DEPRECATED"
+      }
+    },
+    {
+      "label": "final-compatible",
+      "version": {
+        "activate_after": "2026-10-22T05:59:38.905770+00:00",
+        "activated_at": "2026-10-22T05:59:41.965436+00:00",
+        "analyzed_at": "2026-10-22T05:58:48.491539+00:00",
+        "classification": "BACKWARD_COMPATIBLE",
+        "deprecated_at": "",
+        "has_predecessor": true,
+        "id": 1,
+        "migration_assessment": "NOT_REQUIRED",
+        "migration_plan_json": "{\"note\":\"No migration required for an optional property.\"}",
+        "ordinal": 2,
+        "policy_snapshot_json": "{\"backward_compatible\":\"Existing payloads valid under the active schema remain valid for new consumers.\",\"forward_compatible\":\"Payloads emitted under the new schema remain consumable by existing consumers.\",\"rules\":[\"Adding a non-required optional property is BACKWARD_COMPATIBLE with OPTIONAL_ADDITION.\",\"Changing a field type or format is BREAKING.\",\"Adding a required field without a complete default/backfill is BREAKING.\",\"A breaking migration is ADEQUATE only when it specifies dual-read or dual-write, backfill, validation, cutover, and rollback.\"]}",
+        "predecessor_id": 0,
+        "proposed_at": "2026-10-22T05:58:38.905770+00:00",
+        "reason_code": "OPTIONAL_ADDITION",
+        "registry_id": 0,
+        "schema_commitment": "sha256:compatible-1792648706893-0",
+        "schema_json": "{\"title\":\"CustomerProfile\",\"type\":\"object\",\"required\":[\"email\",\"created_at\"],\"properties\":{\"email\":{\"type\":\"string\",\"format\":\"email\",\"meaning\":\"customer contact email\"},\"created_at\":{\"type\":\"string\",\"format\":\"date-time\",\"meaning\":\"account creation instant\"},\"display_name\":{\"type\":\"string\",\"meaning\":\"optional customer-facing name\"}}}",
+        "status": "ACTIVE"
+      },
+      "edge": {
+        "analyzed_at": "2026-10-22T05:58:48.491539+00:00",
+        "classification": "BACKWARD_COMPATIBLE",
+        "from_version_id": 0,
+        "migration_assessment": "NOT_REQUIRED",
+        "reason_code": "OPTIONAL_ADDITION",
+        "registry_id": 0,
+        "status": "ACTIVE",
+        "to_version_id": 1
+      }
+    },
+    {
+      "label": "final-breaking",
+      "version": {
+        "activate_after": "2026-10-22T06:00:50.306923+00:00",
+        "activated_at": "",
+        "analyzed_at": "2026-10-22T05:59:58.240219+00:00",
+        "classification": "BREAKING",
+        "deprecated_at": "",
+        "has_predecessor": true,
+        "id": 2,
+        "migration_assessment": "INADEQUATE",
+        "migration_plan_json": "{\"steps\":[],\"note\":\"Immediate cutover with no dual-read, backfill, validation, or rollback.\"}",
+        "ordinal": 3,
+        "policy_snapshot_json": "{\"backward_compatible\":\"Existing payloads valid under the active schema remain valid for new consumers.\",\"forward_compatible\":\"Payloads emitted under the new schema remain consumable by existing consumers.\",\"rules\":[\"Adding a non-required optional property is BACKWARD_COMPATIBLE with OPTIONAL_ADDITION.\",\"Changing a field type or format is BREAKING.\",\"Adding a required field without a complete default/backfill is BREAKING.\",\"A breaking migration is ADEQUATE only when it specifies dual-read or dual-write, backfill, validation, cutover, and rollback.\"]}",
+        "predecessor_id": 1,
+        "proposed_at": "2026-10-22T05:59:50.306923+00:00",
+        "reason_code": "TYPE_OR_FORMAT_CHANGED",
+        "registry_id": 0,
+        "schema_commitment": "sha256:breaking-1792648706893-0",
+        "schema_json": "{\"title\":\"CustomerProfile\",\"type\":\"object\",\"required\":[\"email\",\"created_at\",\"account_tier\"],\"properties\":{\"email\":{\"type\":\"integer\",\"meaning\":\"numeric customer identifier\"},\"created_at\":{\"type\":\"string\",\"format\":\"date\",\"meaning\":\"account creation calendar date\"},\"account_tier\":{\"type\":\"string\",\"enum\":[\"free\",\"pro\"]}}}",
+        "status": "BLOCKED"
+      },
+      "edge": {
+        "analyzed_at": "2026-10-22T05:59:58.240219+00:00",
+        "classification": "BREAKING",
+        "from_version_id": 1,
+        "migration_assessment": "INADEQUATE",
+        "reason_code": "TYPE_OR_FORMAT_CHANGED",
+        "registry_id": 0,
+        "status": "BLOCKED",
+        "to_version_id": 2
+      }
+    },
+    {
+      "label": "final-counts",
+      "registryCount": 1,
+      "versionCount": 3
+    }
+  ]
+}

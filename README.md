@@ -103,5 +103,15 @@ Current local result:
 - Direct tests: `18 passed`.
 - No public method is payable and the contract contains no transfer operation.
 
-Deployment and live lifecycle evidence will be recorded in `LIVE_TESTS.md` after
-the corrected contract is deployed to StudioNet.
+## StudioNet deployment
+
+- Contract: `0xf77d7B9E85444C1c8b4c08788760bE7951E9f846`
+- Explorer: `https://explorer-studio.genlayer.com/address/0xf77d7B9E85444C1c8b4c08788760bE7951E9f846`
+- Deployment transaction: `0x5bebb75f3699d62dc9beb992b8968789c823bef9f61d05bec3f585cd10073e76`
+- Result: `ACCEPTED / MAJORITY_AGREE`, leader `SUCCESS`.
+- Deployed source matches the repository source byte-for-byte.
+
+The live lifecycle activated a `BACKWARD_COMPATIBLE` optional-field upgrade and
+blocked a `BREAKING` type change whose migration plan was `INADEQUATE`. See
+`LIVE_TESTS.md` and `live-studionet-latest.json` for transaction and state
+evidence.
